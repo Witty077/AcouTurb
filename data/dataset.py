@@ -2,7 +2,7 @@ import os
 import glob
 import torch
 import numpy as np
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 
 class AcouTurbDataset(Dataset):
     """
@@ -114,13 +114,13 @@ class AcouTurbDataset(Dataset):
 # Example usage for testing the dataset implementation
 if __name__ == "__main__":
     print("Testing AcouTurbDataset with mock train data...")
-    train_dataset = AcouTurbDataset(mode="train", use_mock_data=True, mock_num=3)
+    train_dataset = AcouTurbDataset(mode="train", use_mock_data=True, mock_num=512)
     for i in range(len(train_dataset)):
         signal, label = train_dataset[i]
         print(f"Train Sample {i}: Shape={signal.shape}, Label={label.item()}")
 
     print("\nTesting AcouTurbDataset with mock test data...")
-    test_dataset = AcouTurbDataset(mode="test", use_mock_data=True, mock_num=5)
+    test_dataset = AcouTurbDataset(mode="test", use_mock_data=True, mock_num=256)
     for i in range(len(test_dataset)):
         signal, label = test_dataset[i]
         print(f"Test Sample {i}: Shape={signal.shape}, Label={label.item()}")
